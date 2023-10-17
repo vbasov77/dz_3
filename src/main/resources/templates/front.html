@@ -1,0 +1,70 @@
+<div th:replace="~{layouts/header :: header(Front)}"/>
+
+<section style="margin-top: 40px">
+    <div class="container-fluid px-4 px-lg-5 ">
+        <div class="row">
+            <div class="col justify-content-lg-start" id="preload">
+                <h3>Все объекты</h3>
+                <div th:if="${objs}">
+                    <div class="row gx-4 gx-lg-5">
+                        <div th:each="value : ${objs}">
+                            <div class="col">
+                                <div class="card" th:data-card="${value.getId()}">
+                                    <div class="card-title">
+                                        id <span th:text="${value.getId()}"/>
+                                    </div>
+                                    <div class="card-body">
+                                        <span th:text="${value.getNameObj()}"/>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a title="Редактировать" class="rem"
+                                           th:href="@{edit_obj/id{id}(id = ${value.getId()})}">
+                                            <img th:src="@{'/icons/edit.svg'}"
+                                                 style="width: 17px; ">
+                                        </a>
+                                        <a th:data-id="${value.getId()}" title="Удалить объект" class="rem"
+                                           id="delete_obj">
+                                            <img th:src="@{'/icons/delete.svg'}"
+                                                 style="width: 20px; ">
+                                        </a>
+                                    </div>
+                                    <center>
+                                        <div th:data-preload="${value.getId()}"></div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section style="margin-top: 40px">
+    <div class="container-fluid px-4 px-lg-5 ">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Добавить объект</h3>
+                <br>
+                <form action="/add_obj" method="post">
+                    <label th:for="name_obj"><b>Название объекта</b></label>
+                    <input name="nameObj" placeholder="Название объекта" class="form-control">
+                    <br>
+                    <button class="btn btn-outline-success" type="submit" id="submit">
+                        Добавить объект
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" th:src="@{/js/obj/delete.js}"></script>
+<div th:replace="~{layouts/footer :: footer(Front)}"/>
+
+
+

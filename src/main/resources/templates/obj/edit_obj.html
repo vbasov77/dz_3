@@ -1,0 +1,22 @@
+<div th:replace="~{layouts/header :: header(Front)}"/>
+
+<section style="margin-top: 40px">
+    <div class="container-fluid px-4 px-lg-5 ">
+        <div class="row">
+            <div class="col justify-content-lg-start" id="preload">
+
+                <form action="/edit_obj" method="post">
+                    <input type="hidden" name="id" th:value="${obj.getId}">
+                    <label th:for="name_obj"><b>Название объекта</b></label>
+                    <input name="nameObj" type="text" placeholder="Название объекта"
+                           th:value="${obj.getNameObj}" class="form-control">
+                    <br>
+                    <button class="btn btn-outline-success" type="submit" id="submit">
+                        Редактировать
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
